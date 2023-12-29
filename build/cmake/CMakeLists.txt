@@ -114,7 +114,7 @@ if (MSVC)
   if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(i?86|x86|x86_32)$")
     target_link_libraries (glew LINK_PRIVATE -BASE:0x62AA0000)
   else()
-    target_link_options (glew PUBLIC /Gy)
+    target_compile_options (glew PUBLIC /Gy)
   endif()
   # kill security checks which are dependent on stdlib
   target_compile_options (glew PRIVATE -GS-)

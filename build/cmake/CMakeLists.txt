@@ -60,7 +60,7 @@ else ()
   set (DLL_PREFIX lib)
 endif ()
 
-set (GLEW_LIBRARIES ${OPENGL_LIBRARIES})
+set (GLEW_LIBRARIES OpenGL::GL)
 
 add_definitions (-DGLEW_NO_GLU)
 
@@ -85,7 +85,7 @@ if (GLEW_OSMESA)
     set (OSMESA_LIB_NAME OSMesa)
   endif ()
   add_definitions (-DGLEW_OSMESA)
-  set (GLEW_LIBRARIES ${OSMESA_LIB_NAME} ${OPENGL_LIBRARIES})
+  set (GLEW_LIBRARIES ${OSMESA_LIB_NAME} OpenGL::GL)
   set (X11_LIBRARIES)
 endif ()
 
@@ -112,9 +112,7 @@ if (MSVC)
   target_compile_definitions (glew PRIVATE "GLEW_BUILD;VC_EXTRALEAN")
   target_compile_definitions (glew_s PRIVATE "GLEW_STATIC;VC_EXTRALEAN")
   if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(i?86|x86|x86_32)$")
-    target_link_libraries (glew LINK_PRIVATE -BASE:0x62AA0000)
-  else()
-    target_compile_options (glew PUBLIC /Gy)
+      target_link_libraries (glew LINK_PRIVATE -BASE:0x62AA0000)
   endif()
   # kill security checks which are dependent on stdlib
   target_compile_options (glew PRIVATE -GS-)

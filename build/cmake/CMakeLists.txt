@@ -108,7 +108,7 @@ if (GLEW_EGL AND UNIX)
   if (NOT OpenGL_EGL_FOUND)
     message (FATAL_ERROR "EGL library set but not found.")
   endif ()
-  list (APPEND GLEW_LIBRARIES ${OPENGL_egl_LIBRARY})
+  list (APPEND GLEW_LIBRARIES OpenGL::EGL)
 endif ()
 
 #### GLEW ####
